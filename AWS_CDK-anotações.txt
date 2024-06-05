@@ -1,0 +1,94 @@
+Vamos construir uma aplicação serverless na AWS utilizando Node.js, TypeScript e o Cloud Development Kit (CDK).**
+
+O que vamos utilizar?
+- CDK (Cloud Development Kit)**: Ferramenta para modelar e provisionar a infraestrutura utilizando TypeScript.
+
+Projeto
+- Aplicação: Lista de compras (somente backend, sem frontend).
+- Operações básicas**: CRUD (Create, Read, Update, Delete).
+
+Infraestrutura
+- Arquitetura:
+    - Usuário -> API Gateway -> Lambda -> DynamoDB
+    - Quando o usuário faz uma requisição via API Gateway, a função Lambda é invocada, que por sua vez interage com a tabela DynamoDB.
+
+Exemplo de tabela DynamoDB:
+{
+    "id": "8798sdf-324",
+    "model": "Model5",
+    "code": "COD5",
+    "price": 40.5,
+    "productName": "Prod4"
+}
+
+
+Construindo a função Lambda com CDK:
+this.productsHandler = new lambdaNodeJs.NodejsFunction(this, "ProductsFunction", {
+    functionName: "ProductsFunction",
+    entry: "lambda/productsFunction.ts",
+    handler: "handler",
+    runtime: lambda.Runtime.NODEJS_14_X,
+    memorySize: 128,
+    timeout: cdk.Duration.seconds(3),
+});
+
+- Criando um novo objeto do tipo `NodejsFunction` e definindo algumas propriedades.
+
+Ferramentas de monitoramento e gerenciamento:
+- X-Ray: Para entender o comportamento da função Lambda.
+- CloudFormation Stacks: Para controlar o ciclo de vida da infraestrutura.
+
+Pré-requisitos:
+- Conta AWS: [AWS Free Tier](https://aws.amazon.com/pt/free)
+- Ferramentas a serem instaladas:
+    - Node.js
+    - AWS CLI
+    - AWS CDK
+    - Visual Studio Code
+    - Postman
+    - Docker Desktop
+
+Construção do projeto com AWS CDK:
+- Infraestrutura:
+    - User -> API Gateway -> Lambda -> DynamoDB
+- Ferramentas adicionai:
+    - CloudWatch Logs
+    - X-Ray
+    - CDK
+    - CloudFormation Stacks
+    - IAM Roles
+
+Função Lambda:
+- Definição: Recurso que permite executar trechos de código a partir de gatilhos e eventos.
+- Características:
+    - Ambiente controlado
+    - Curta duração e baixa memória
+    - Otimizações para redução de tempo de execução e memória consumida
+    - Monitoramento através de gráficos e logs no CloudWatch
+    - Integração com X-Ray para monitoramento avançado
+
+API Gateway:
+- Validações:
+    - URI
+    - Verbo HTTP
+    - Corpo das requisições
+- Integração: Com outros recursos AWS e com AWS Cognito para autenticação e autorização.
+
+DynamoDB:
+- Características:
+    - Criação de tabelas NoSQL sem necessidade de servidor
+    - Armazenamento baseado em documentos ou chave-valor
+    - Altamente escalável com regras de segurança definidas
+    - Exclusão automática de itens baseada em TTL
+    - Modos de capacidade de leitura e escrita (sob demanda ou provisionado)
+    - Auto-scaling para modo provisionado
+    - Benefícios da chave primária composta para balanceamento de tráfego e facilidade de pesquisa
+
+Fluxo da Requisição:
+- Usuário -> API Gateway -> Função Lambda -> DynamoDB (criação e manipulação de tabelas)
+
+AWS X-Ray:
+- Definição: Sistema de tracing distribuído para análise de consumo de tempo.
+- Habilitação:
+    - Ativar a opção tracing na construção da função Lambda.
+    - Capturar chamadas ao SDK da AWS dentro da função.

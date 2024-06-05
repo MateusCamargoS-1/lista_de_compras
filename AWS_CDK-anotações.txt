@@ -1,11 +1,12 @@
-Vamos construir uma aplicação serverless na AWS utilizando Node.js, TypeScript e o Cloud Development Kit (CDK).**
+Anotações durante os estudos de AWS CDK
+Vamos construir uma aplicação serverless na AWS utilizando Node.js, TypeScript e o Cloud Development Kit (CDK).
 
 O que vamos utilizar?
-- CDK (Cloud Development Kit)**: Ferramenta para modelar e provisionar a infraestrutura utilizando TypeScript.
+- CDK (Cloud Development Kit): Ferramenta para modelar e provisionar a infraestrutura utilizando TypeScript.
 
 Projeto
 - Aplicação: Lista de compras (somente backend, sem frontend).
-- Operações básicas**: CRUD (Create, Read, Update, Delete).
+- Operações básicas: CRUD (Create, Read, Update, Delete).
 
 Infraestrutura
 - Arquitetura:
